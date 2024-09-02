@@ -1,0 +1,30 @@
+{
+  "name": "pot-generator",
+  "version": "1.0.0",
+  "description": "PoToken generator API for third party YouTube clients",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lighttube-org/pot-generator.git"
+  },
+  "keywords": [
+    "youtube",
+    "innertube",
+    "lighttube",
+    "potoken"
+  ],
+  "author": "kuylar",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/lighttube-org/pot-generator/issues"
+  },
+  "homepage": "https://github.com/lighttube-org/pot-generator#readme",
+  "dependencies": {
+    "bgutils-js": "^2.0.1",
+    "express.js": "^1.0.0",
+    "jsdom": "^25.0.0"
+  }
+}
