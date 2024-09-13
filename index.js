@@ -5,8 +5,12 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-async function getVisitorData() {
-	const homepage = await fetch("https://www.youtube.com/");
+async function getVisitorData(userAgent) {
+	const homepage = await fetch("https://www.youtube.com/", {
+		headers: {
+			"User-Agent": userAgent
+		}
+	});
 	const html = await homepage.text();
 	const dom = new JSDOM(html);
 	const scripts = dom.window.document.querySelectorAll("script[nonce]");
@@ -33,13 +37,8 @@ async function getPoToken(cfg = {}) {
 	const dom = new JSDOM();
 
 	const requestKey = cfg.requestKey || "O43z0dpjhgX20SCx4KAo";
-	let visitorData = cfg.visitorData || (await getVisitorData());
-
-	if (visitorData.endsWith("="))
-		visitorData = encodeURIComponent(visitorData);
-
-	if (!visitorData.endsWith("%3D"))
-		throw new Error("Malformed visitorData");
+	let userAgent = cfg.userAgent || "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
+	let visitorData = cfg.visitorData || (await getVisitorData(userAgent));
 
 	Object.assign(globalThis, {
 		window: dom.window,
